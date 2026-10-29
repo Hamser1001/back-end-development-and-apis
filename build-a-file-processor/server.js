@@ -94,3 +94,26 @@ console.log(process.env.NODE_ENV)
 
 console.log(process.argv)
 console.log(process.argv[2])
+
+process.stdout.write('Hello from stdout\n')
+process.stderr.write('Hello from stderr\n')
+
+
+// ----- Stream
+
+const readable = fs.createReadStream("assets/poem.txt", { encoding: "utf8" })
+
+// readable.on("data", (chunk) => {
+//     console.log(chunk)
+// })
+
+// readable.on("end", () => {
+//     console.log("Done reading")
+// })
+
+const writable = fs.createWriteStream("assets/stream-output.txt")
+// writable.write("First chunk\n");
+// writable.write("Second chunk\n");
+// writable.end();
+
+readable.pipe(writable)
